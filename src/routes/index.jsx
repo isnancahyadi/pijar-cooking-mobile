@@ -2,6 +2,7 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Home, Login, Register, Profile} from '../pages';
+import {BottomNavbar} from '../components';
 
 const Stack = createNativeStackNavigator();
 
@@ -10,8 +11,8 @@ const Router = () => {
     <Stack.Navigator
       screenOptions={{contentStyle: {backgroundColor: '#FCFCFC'}}}>
       <Stack.Screen
-        name="Home"
-        component={Home}
+        name="BottomNavbar"
+        component={BottomNavbar}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -22,11 +23,6 @@ const Router = () => {
       <Stack.Screen
         name="Register"
         component={Register}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
