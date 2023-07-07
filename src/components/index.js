@@ -1,3 +1,4 @@
 import BottomNavbar from './BottomNavbar';
+import {PopularRecipe} from './CarouselComp';
 
-export {BottomNavbar};
+export {BottomNavbar, PopularRecipe};
