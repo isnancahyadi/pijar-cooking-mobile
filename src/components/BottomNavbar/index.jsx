@@ -2,15 +2,15 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {AddRecipe, Home, Message, Profile} from '../../pages';
+import NavbarItem from './NavbarItem';
 
 const Tab = createBottomTabNavigator();
 
 const ButtomNavbar = () => {
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
-        headerShown: false,
-      })}>
+      screenOptions={{tabBarShowLabel: false, headerShown: false}}
+      tabBar={props => <NavbarItem {...props} />}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Add Recipe" component={AddRecipe} />
       <Tab.Screen name="Message" component={Message} />
