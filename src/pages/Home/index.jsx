@@ -17,7 +17,7 @@ const Home = () => {
     <ScrollView>
       <SafeAreaView
         style={{
-          paddingVertical: 20,
+          paddingVertical: 30,
         }}>
         {/* Search Bar */}
         <View style={{paddingHorizontal: 30}}>
@@ -139,6 +139,9 @@ const Home = () => {
           </View>
         </View>
         {/* ========== */}
+
+        {/* Recommended */}
+        {/* =========== */}
       </SafeAreaView>
     </ScrollView>
   );
