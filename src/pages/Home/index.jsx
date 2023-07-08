@@ -5,7 +5,7 @@ import {Searchbar, Surface} from 'react-native-paper';
 
 import * as IcOutlined from 'react-native-heroicons/outline';
 import {primaryColor, greyColor, greyColor50} from '../../values/colors';
-import {PopularRecipe} from '../../components';
+import {PopularRecipe, RecommRecipe} from '../../components';
 import {IcChicken, IcDessert, IcSeafood} from '../../assets/icon';
 import * as IcSolid from 'react-native-heroicons/solid';
 
@@ -41,11 +41,11 @@ const Home = () => {
         {/* ========== */}
 
         {/* Popular Recipe */}
-        <View style={{marginTop: 30}}>
+        <View style={{marginTop: 20}}>
           <View
             style={{
               paddingHorizontal: 30,
-              marginBottom: 10,
+              marginBottom: 15,
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',
@@ -68,7 +68,7 @@ const Home = () => {
 
         {/* New Recipe */}
         <View style={{marginTop: 30, paddingHorizontal: 30}}>
-          <View style={{alignContent: 'center', marginBottom: 10}}>
+          <View style={{alignContent: 'center', marginBottom: 15}}>
             <Text style={{fontSize: 21, fontWeight: '700'}}>Category</Text>
           </View>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -141,6 +141,15 @@ const Home = () => {
         {/* ========== */}
 
         {/* Recommended */}
+        <View style={{marginTop: 30}}>
+          <View style={{alignContent: 'center', marginBottom: 15}}>
+            <Text
+              style={{fontSize: 21, fontWeight: '700', paddingHorizontal: 30}}>
+              Popular For you
+            </Text>
+          </View>
+          <RecommRecipe />
+        </View>
         {/* =========== */}
       </SafeAreaView>
     </ScrollView>

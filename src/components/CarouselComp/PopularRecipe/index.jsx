@@ -2,7 +2,7 @@ import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
 import React, {useEffect, useRef, useState} from 'react';
 
-const ENTRIES1 = [
+const ENTRIES = [
   {
     title: 'American Shrimp Fried Rice with Chili Fish Sauce',
     image: require('../../../assets/img/american-shrimp-fried-rice-with-chili-fish-sauce.jpg'),
@@ -32,7 +32,7 @@ const PopularRecipe = () => {
   const carouselRef = useRef(null);
 
   useEffect(() => {
-    setEntries(ENTRIES1);
+    setEntries(ENTRIES);
   }, []);
 
   const renderItem = ({item, index}, parallaxProps) => {
