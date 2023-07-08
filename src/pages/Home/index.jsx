@@ -1,11 +1,13 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Searchbar} from 'react-native-paper';
+import {Searchbar, Surface} from 'react-native-paper';
 
 import * as IcOutlined from 'react-native-heroicons/outline';
-import {greyColor50} from '../../values/colors';
+import {primaryColor, greyColor, greyColor50} from '../../values/colors';
 import {PopularRecipe} from '../../components';
+import {IcChicken, IcDessert, IcSeafood} from '../../assets/icon';
+import * as IcSolid from 'react-native-heroicons/solid';
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -40,15 +42,103 @@ const Home = () => {
 
         {/* Popular Recipe */}
         <View style={{marginTop: 30}}>
-          <View style={{paddingHorizontal: 30, marginBottom: 10}}>
+          <View
+            style={{
+              paddingHorizontal: 30,
+              marginBottom: 10,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
             <Text style={{fontSize: 21, fontWeight: '700'}}>
               Popular Recipes
             </Text>
-            <Text>Popular check</Text>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: '500',
+                color: primaryColor,
+              }}>
+              More
+            </Text>
           </View>
           <PopularRecipe />
         </View>
         {/* ============== */}
+
+        {/* New Recipe */}
+        <View style={{marginTop: 30, paddingHorizontal: 30}}>
+          <View style={{alignContent: 'center', marginBottom: 10}}>
+            <Text style={{fontSize: 21, fontWeight: '700'}}>Category</Text>
+          </View>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <View style={{alignItems: 'center', rowGap: 5}}>
+              <Surface
+                mode="flat"
+                elevation={4}
+                style={{
+                  height: 70,
+                  width: 70,
+                  alignContent: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 20,
+                  backgroundColor: '#FE8761',
+                }}>
+                <IcChicken height={35} />
+              </Surface>
+              <Text style={{fontWeight: '700'}}>Chicken</Text>
+            </View>
+            <View style={{alignItems: 'center', rowGap: 5}}>
+              <Surface
+                mode="flat"
+                elevation={4}
+                style={{
+                  height: 70,
+                  width: 70,
+                  alignContent: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 20,
+                  backgroundColor: '#98D8AA',
+                }}>
+                <IcDessert height={35} />
+              </Surface>
+              <Text style={{fontWeight: '700'}}>Dessert</Text>
+            </View>
+            <View style={{alignItems: 'center', rowGap: 5}}>
+              <Surface
+                mode="flat"
+                elevation={4}
+                style={{
+                  height: 70,
+                  width: 70,
+                  alignContent: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 20,
+                  backgroundColor: '#F7D060',
+                }}>
+                <IcSeafood height={35} />
+              </Surface>
+              <Text style={{fontWeight: '700'}}>Seafood</Text>
+            </View>
+            <View style={{alignItems: 'center', rowGap: 5}}>
+              <Surface
+                mode="flat"
+                elevation={4}
+                style={{
+                  height: 70,
+                  width: 70,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 20,
+                  backgroundColor: '#EFD9D1',
+                }}>
+                <IcSolid.Squares2X2Icon color={greyColor} size={45} />
+              </Surface>
+              <Text style={{fontWeight: '700'}}>More</Text>
+            </View>
+          </View>
+        </View>
+        {/* ========== */}
       </SafeAreaView>
     </ScrollView>
   );
