@@ -1,4 +1,11 @@
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {Carousel} from 'react-native-snap-carousel';
 
@@ -32,7 +39,8 @@ const ENTRIES = [
 
 const {width: screenWidth} = Dimensions.get('window');
 
-const RecommRecipe = () => {
+const RecommRecipe = ({props}) => {
+  const {navigation} = props;
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
 
@@ -42,15 +50,20 @@ const RecommRecipe = () => {
 
   const renderItem = ({item, index}) => {
     return (
-      <View style={styles.container} key={index}>
-        <Image source={item.image} style={styles.image} />
-        <Text style={styles.title} numberOfLines={1}>
-          {item.title}
-        </Text>
-        <Text style={styles.description} numberOfLines={1}>
-          {item.description}
-        </Text>
-      </View>
+      <Pressable
+        onPress={() => {
+          navigation.navigate('DetailRecipe');
+        }}>
+        <View style={styles.container} key={index}>
+          <Image source={item.image} style={styles.image} />
+          <Text style={styles.title} numberOfLines={1}>
+            {item.title}
+          </Text>
+          <Text style={styles.description} numberOfLines={1}>
+            {item.description}
+          </Text>
+        </View>
+      </Pressable>
     );
   };
 

@@ -148,7 +148,7 @@ const Home = props => {
               Popular For you
             </Text>
           </View>
-          <RecommRecipe />
+          <RecommRecipe props={props} />
         </View>
         {/* =========== */}
       </SafeAreaView>

@@ -2,6 +2,7 @@ import {
   Dimensions,
   FlatList,
   ImageBackground,
+  Pressable,
   StyleSheet,
   Text,
   View,
@@ -60,7 +61,8 @@ const StepsItem = ({item, index}) => (
   </View>
 );
 
-const DetailRecipe = () => {
+const DetailRecipe = props => {
+  const {navigation} = props;
   const [type, setType] = useState('ingredients');
   return (
     <View style={{height: screenHeight, width: screenWidth}}>
@@ -75,7 +77,9 @@ const DetailRecipe = () => {
           paddingTop: 15,
           paddingHorizontal: 20,
         }}>
-        <IcOutlined.ArrowSmallLeftIcon color={'#FFFFFF'} size={41} />
+        <Pressable onPress={() => navigation.goBack()}>
+          <IcOutlined.ArrowSmallLeftIcon color={'#FFFFFF'} size={41} />
+        </Pressable>
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           <View
             style={{
@@ -194,17 +198,9 @@ const DetailRecipe = () => {
             backgroundColor: primaryColorTransparent,
           }}>
           {type === 'ingredients' ? (
-            <FlatList
-              data={DATA_INGREDIENTS}
-              renderItem={IngredientsItem}
-              keyExtractor={item => item.id}
-            />
+            <FlatList data={DATA_INGREDIENTS} renderItem={IngredientsItem} />
           ) : (
-            <FlatList
-              data={DATA_STEPS}
-              renderItem={StepsItem}
-              keyExtractor={item => item.id}
-            />
+            <FlatList data={DATA_STEPS} renderItem={StepsItem} />
           )}
         </View>
       </View>
