@@ -9,17 +9,8 @@ const Stack = createNativeStackNavigator();
 const Router = () => {
   return (
     <Stack.Navigator
+      initialRouteName="Login"
       screenOptions={{contentStyle: {backgroundColor: '#FCFCFC'}}}>
-      <Stack.Screen
-        name="BottomNavbar"
-        component={BottomNavbar}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="DetailRecipe"
-        component={DetailRecipe}
-        options={{headerShown: false}}
-      />
       <Stack.Screen
         name="Login"
         component={Login}
@@ -28,6 +19,16 @@ const Router = () => {
       <Stack.Screen
         name="Register"
         component={Register}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="BottomNavbar"
+        component={BottomNavbar}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DetailRecipe"
+        component={DetailRecipe}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
