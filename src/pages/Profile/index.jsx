@@ -1,10 +1,122 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {Avatar} from 'react-native-paper';
+import * as IcOutlined from 'react-native-heroicons/outline';
+import {primaryColor, greyColor} from '../../values/colors';
+
+const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
 const Profile = () => {
   return (
-    <View>
-      <Text>Profile</Text>
+    <View
+      style={{
+        width: screenWidth,
+        height: screenHeight,
+      }}>
+      <View
+        style={{
+          height: screenWidth,
+          backgroundColor: primaryColor,
+          justifyContent: 'center',
+        }}>
+        <View style={{alignItems: 'center', rowGap: 20}}>
+          <Avatar.Image
+            source={require('../../assets/img/profile.jpg')}
+            size={120}
+          />
+          <Text style={{color: '#FFFFFF', fontSize: 23, fontWeight: 600}}>
+            John Doe
+          </Text>
+        </View>
+      </View>
+      <View
+        style={{
+          backgroundColor: '#FFFFFF',
+          position: 'absolute',
+          height: screenHeight - screenWidth + 60,
+          bottom: 0,
+          start: 0,
+          end: 0,
+          marginHorizontal: 20,
+          borderTopStartRadius: 30,
+          borderTopEndRadius: 30,
+          paddingHorizontal: 30,
+          paddingTop: 30,
+        }}>
+        <View style={{flexDirection: 'column', rowGap: 40}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                columnGap: 13,
+              }}>
+              <IcOutlined.UserIcon size={29} color={primaryColor} />
+              <Text style={{fontSize: 17, fontWeight: 500}}>Edit Profile</Text>
+            </View>
+            <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                columnGap: 13,
+              }}>
+              <IcOutlined.BookOpenIcon size={29} color={primaryColor} />
+              <Text style={{fontSize: 17, fontWeight: 500}}>My Recipe</Text>
+            </View>
+            <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                columnGap: 13,
+              }}>
+              <IcOutlined.BookmarkIcon size={29} color={primaryColor} />
+              <Text style={{fontSize: 17, fontWeight: 500}}>Saved Recipe</Text>
+            </View>
+            <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
+          </View>
+
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                columnGap: 13,
+              }}>
+              <IcOutlined.HandThumbUpIcon size={29} color={primaryColor} />
+              <Text style={{fontSize: 17, fontWeight: 500}}>Liked Recipe</Text>
+            </View>
+            <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
