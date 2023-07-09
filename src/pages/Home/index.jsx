@@ -9,7 +9,7 @@ import {PopularRecipe, RecommRecipe} from '../../components';
 import {IcChicken, IcDessert, IcSeafood} from '../../assets/icon';
 import * as IcSolid from 'react-native-heroicons/solid';
 
-const Home = () => {
+const Home = props => {
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = query => setSearchQuery(query);
 
@@ -62,7 +62,7 @@ const Home = () => {
               More
             </Text>
           </View>
-          <PopularRecipe />
+          <PopularRecipe props={props} />
         </View>
         {/* ============== */}
 

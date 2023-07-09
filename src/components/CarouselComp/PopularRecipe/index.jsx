@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
 import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
 import React, {useEffect, useRef, useState} from 'react';
 
@@ -27,7 +27,8 @@ const ENTRIES = [
 
 const {width: screenWidth} = Dimensions.get('window');
 
-const PopularRecipe = () => {
+const PopularRecipe = ({props}) => {
+  const {navigation} = props;
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
 
@@ -37,18 +38,23 @@ const PopularRecipe = () => {
 
   const renderItem = ({item, index}, parallaxProps) => {
     return (
-      <View style={styles.item}>
-        <ParallaxImage
-          source={item.image}
-          containerStyle={styles.imageContainer}
-          style={styles.image}
-          parallaxFactor={0.4}
-          {...parallaxProps}
-        />
-        <Text style={styles.title} numberOfLines={3}>
-          {item.title}
-        </Text>
-      </View>
+      <Pressable
+        onPress={() => {
+          navigation.navigate('DetailRecipe');
+        }}>
+        <View style={styles.item}>
+          <ParallaxImage
+            source={item.image}
+            containerStyle={styles.imageContainer}
+            style={styles.image}
+            parallaxFactor={0.4}
+            {...parallaxProps}
+          />
+          <Text style={styles.title} numberOfLines={3}>
+            {item.title}
+          </Text>
+        </View>
+      </Pressable>
     );
   };
 
