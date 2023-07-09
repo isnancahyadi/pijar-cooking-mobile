@@ -22,7 +22,6 @@ const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
 const Login = props => {
   const {navigation} = props;
-  const [focus, setFocus] = useState(false);
 
   return (
     <ScrollView>
@@ -61,13 +60,7 @@ const Login = props => {
             outlineStyle={{borderRadius: 15}}
             left={
               <TextInput.Icon
-                icon={() => (
-                  <IcOutlined.UserIcon
-                    size={27}
-                    color={focus ? primaryColor : greyColor}
-                  />
-                )}
-                color={isTextInputFocused => setFocus(isTextInputFocused)}
+                icon={() => <IcOutlined.UserIcon size={27} color={greyColor} />}
               />
             }
             style={{
@@ -88,12 +81,8 @@ const Login = props => {
             left={
               <TextInput.Icon
                 icon={() => (
-                  <IcOutlined.LockClosedIcon
-                    size={27}
-                    color={focus ? primaryColor : greyColor}
-                  />
+                  <IcOutlined.LockClosedIcon size={27} color={greyColor} />
                 )}
-                color={isTextInputFocused => setFocus(isTextInputFocused)}
               />
             }
             style={{
