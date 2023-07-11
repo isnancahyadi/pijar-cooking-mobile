@@ -9,6 +9,7 @@ import {
 } from '../../values/colors';
 import * as IcOutlined from 'react-native-heroicons/outline';
 import {useNavigation} from '@react-navigation/native';
+import {Input} from '../../components';
 
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
@@ -32,116 +33,80 @@ const Register = () => {
           <Text>Create new account to access all feautures</Text>
         </View>
         <View style={{marginTop: 20, rowGap: 15}}>
-          <TextInput
-            mode="outlined"
+          <Input
             placeholder="Name"
-            activeOutlineColor={primaryColor}
-            outlineColor="transparent"
-            selectionColor={primaryColorSelection}
-            cursorColor={primaryColor}
-            outlineStyle={{borderRadius: 15}}
-            left={
+            icon={
               <TextInput.Icon
-                icon={() => <IcOutlined.UserIcon size={27} color={greyColor} />}
+                icon={({color}) => (
+                  <IcOutlined.UserIcon size={27} color={color} />
+                )}
+                color={isTextInputFocused =>
+                  isTextInputFocused ? primaryColor : greyColor
+                }
               />
             }
-            style={{
-              fontSize: 17,
-              paddingVertical: 5,
-              paddingHorizontal: 5,
-              backgroundColor: 'rgba(245, 245, 245, 1)',
-            }}
           />
-          <TextInput
-            mode="outlined"
+
+          <Input
             placeholder="Email"
-            activeOutlineColor={primaryColor}
-            outlineColor="transparent"
-            selectionColor={primaryColorSelection}
-            cursorColor={primaryColor}
-            outlineStyle={{borderRadius: 15}}
-            left={
+            icon={
               <TextInput.Icon
-                icon={() => (
-                  <IcOutlined.EnvelopeIcon size={27} color={greyColor} />
+                icon={({color}) => (
+                  <IcOutlined.EnvelopeIcon size={27} color={color} />
                 )}
+                color={isTextInputFocused =>
+                  isTextInputFocused ? primaryColor : greyColor
+                }
               />
             }
-            style={{
-              fontSize: 17,
-              paddingVertical: 5,
-              paddingHorizontal: 5,
-              backgroundColor: 'rgba(245, 245, 245, 1)',
-            }}
+            keyboardType="email-address"
           />
-          <TextInput
-            mode="outlined"
+
+          <Input
             placeholder="Phone Number"
-            activeOutlineColor={primaryColor}
-            outlineColor="transparent"
-            selectionColor={primaryColorSelection}
-            cursorColor={primaryColor}
-            outlineStyle={{borderRadius: 15}}
-            left={
+            icon={
               <TextInput.Icon
-                icon={() => (
-                  <IcOutlined.PhoneIcon size={27} color={greyColor} />
+                icon={({color}) => (
+                  <IcOutlined.PhoneIcon size={27} color={color} />
                 )}
+                color={isTextInputFocused =>
+                  isTextInputFocused ? primaryColor : greyColor
+                }
               />
             }
-            style={{
-              fontSize: 17,
-              paddingVertical: 5,
-              paddingHorizontal: 5,
-              backgroundColor: 'rgba(245, 245, 245, 1)',
-            }}
+            keyboardType="phone-pad"
           />
-          <TextInput
-            mode="outlined"
+
+          <Input
             placeholder="Create New Password"
-            activeOutlineColor={primaryColor}
-            outlineColor="transparent"
-            selectionColor={primaryColorSelection}
-            cursorColor={primaryColor}
-            outlineStyle={{borderRadius: 15}}
-            left={
+            icon={
               <TextInput.Icon
-                icon={() => (
-                  <IcOutlined.LockClosedIcon size={27} color={greyColor} />
+                icon={({color}) => (
+                  <IcOutlined.LockClosedIcon size={27} color={color} />
                 )}
+                color={isTextInputFocused =>
+                  isTextInputFocused ? primaryColor : greyColor
+                }
               />
             }
-            style={{
-              fontSize: 17,
-              paddingVertical: 5,
-              paddingHorizontal: 5,
-              backgroundColor: 'rgba(245, 245, 245, 1)',
-            }}
             secureTextEntry
           />
-          <TextInput
-            mode="outlined"
+
+          <Input
             placeholder="Confirm Password"
-            activeOutlineColor={primaryColor}
-            outlineColor="transparent"
-            selectionColor={primaryColorSelection}
-            cursorColor={primaryColor}
-            outlineStyle={{borderRadius: 15}}
-            left={
+            icon={
               <TextInput.Icon
-                icon={() => (
-                  <IcOutlined.LockOpenIcon size={27} color={greyColor} />
+                icon={({color}) => (
+                  <IcOutlined.LockClosedIcon size={27} color={color} />
                 )}
+                color={isTextInputFocused =>
+                  isTextInputFocused ? primaryColor : greyColor
+                }
               />
             }
-            style={{
-              fontSize: 17,
-              paddingVertical: 5,
-              paddingHorizontal: 5,
-              backgroundColor: 'rgba(245, 245, 245, 1)',
-            }}
             secureTextEntry
           />
+
           <Button
             mode="contained"
             buttonColor={primaryColor}
