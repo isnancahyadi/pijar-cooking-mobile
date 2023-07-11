@@ -10,27 +10,14 @@ const Router = () => {
   return (
     <Stack.Navigator
       initialRouteName="Login"
-      screenOptions={{contentStyle: {backgroundColor: '#FCFCFC'}}}>
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Register"
-        component={Register}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="BottomNavbar"
-        component={BottomNavbar}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="DetailRecipe"
-        component={DetailRecipe}
-        options={{headerShown: false}}
-      />
+      screenOptions={{
+        contentStyle: {backgroundColor: '#FCFCFC'},
+        headerShown: false,
+      }}>
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen name="BottomNavbar" component={BottomNavbar} />
+      <Stack.Screen name="DetailRecipe" component={DetailRecipe} />
     </Stack.Navigator>
   );
 };
