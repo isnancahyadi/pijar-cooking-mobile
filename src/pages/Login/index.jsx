@@ -17,11 +17,12 @@ import {
 import * as IcOutlined from 'react-native-heroicons/outline';
 import {Logo} from '../../assets/icon';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useNavigation} from '@react-navigation/native';
 
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
-const Login = props => {
-  const {navigation} = props;
+const Login = () => {
+  const navigation = useNavigation();
 
   return (
     <ScrollView>

@@ -8,11 +8,12 @@ import {
   primaryColorSelection,
 } from '../../values/colors';
 import * as IcOutlined from 'react-native-heroicons/outline';
+import {useNavigation} from '@react-navigation/native';
 
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
-const Register = props => {
-  const {navigation} = props;
+const Register = () => {
+  const navigation = useNavigation();
   const [focus, setFocus] = useState(false);
 
   return (

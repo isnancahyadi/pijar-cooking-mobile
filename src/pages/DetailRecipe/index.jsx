@@ -15,6 +15,7 @@ import {
 } from '../../values/colors';
 import {Button, Surface} from 'react-native-paper';
 import * as IcOutlined from 'react-native-heroicons/outline';
+import {useNavigation} from '@react-navigation/native';
 
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
@@ -61,8 +62,8 @@ const StepsItem = ({item, index}) => (
   </View>
 );
 
-const DetailRecipe = props => {
-  const {navigation} = props;
+const DetailRecipe = () => {
+  const navigation = useNavigation();
   const [type, setType] = useState('ingredients');
   return (
     <View style={{height: screenHeight, width: screenWidth}}>

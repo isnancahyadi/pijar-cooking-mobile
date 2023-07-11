@@ -1,6 +1,7 @@
 import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
 import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
 import React, {useEffect, useRef, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 const ENTRIES = [
   {
@@ -27,8 +28,8 @@ const ENTRIES = [
 
 const {width: screenWidth} = Dimensions.get('window');
 
-const PopularRecipe = ({props}) => {
-  const {navigation} = props;
+const PopularRecipe = () => {
+  const navigation = useNavigation();
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
 

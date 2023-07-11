@@ -8,8 +8,10 @@ import {primaryColor, greyColor, greyColor50} from '../../values/colors';
 import {PopularRecipe, RecommRecipe} from '../../components';
 import {IcChicken, IcDessert, IcSeafood} from '../../assets/icon';
 import * as IcSolid from 'react-native-heroicons/solid';
+import {useNavigation} from '@react-navigation/native';
 
-const Home = props => {
+const Home = () => {
+  // const navigation = useNavigation()
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = query => setSearchQuery(query);
 
@@ -62,7 +64,7 @@ const Home = props => {
               More
             </Text>
           </View>
-          <PopularRecipe props={props} />
+          <PopularRecipe />
         </View>
         {/* ============== */}
 
@@ -148,7 +150,7 @@ const Home = props => {
               Popular For you
             </Text>
           </View>
-          <RecommRecipe props={props} />
+          <RecommRecipe />
         </View>
         {/* =========== */}
       </SafeAreaView>

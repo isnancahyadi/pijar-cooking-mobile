@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {Carousel} from 'react-native-snap-carousel';
+import {useNavigation} from '@react-navigation/native';
 
 const ENTRIES = [
   {
@@ -39,8 +40,8 @@ const ENTRIES = [
 
 const {width: screenWidth} = Dimensions.get('window');
 
-const RecommRecipe = ({props}) => {
-  const {navigation} = props;
+const RecommRecipe = () => {
+  const navigation = useNavigation();
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
 
