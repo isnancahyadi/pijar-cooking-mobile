@@ -18,12 +18,57 @@ import * as IcOutlined from 'react-native-heroicons/outline';
 import {Logo} from '../../assets/icon';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
+import {useForm} from 'react-hook-form';
 import {Input} from '../../components';
+import axios from 'axios';
+import EncryptedStorage from 'react-native-encrypted-storage';
 
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
+const PASS_REGEX = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$%^&]).{8,32}/;
+
 const Login = () => {
   const navigation = useNavigation();
+  const {control, handleSubmit} = useForm();
+
+  const [loading, setLoading] = useState(false);
+
+  const storeUserSession = async (username, email, token) => {
+    try {
+      await EncryptedStorage.setItem(
+        'user_session',
+        JSON.stringify({
+          _u: username,
+          _e: email,
+          _t: token,
+        }),
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onLogin = async data => {
+    setLoading(true);
+    await axios
+      .post('http://localhost:3000/auth/login', {
+        username: data.user,
+        password: data.password,
+      })
+      .then(response => {
+        const token = response?.data?.payload?.token;
+        const username = response?.data?.payload?.username;
+        const email = response?.data?.payload?.email;
+
+        storeUserSession(username, email, token);
+        navigation.navigate('BottomNavbar');
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error?.response, null, 2));
+        setLoading(false);
+      });
+  };
 
   return (
     <ScrollView>
@@ -53,7 +98,9 @@ const Login = () => {
         </View>
         <View style={{marginTop: 20, rowGap: 15}}>
           <Input
-            placeholder="Email"
+            name="user"
+            control={control}
+            placeholder="Username or email"
             icon={
               <TextInput.Icon
                 icon={({color}) => (
@@ -64,10 +111,14 @@ const Login = () => {
                 }
               />
             }
-            keyboardType="email-address"
+            rules={{
+              required: 'Username or email is required',
+            }}
           />
 
           <Input
+            name="password"
+            control={control}
             placeholder="Password"
             icon={
               <TextInput.Icon
@@ -79,7 +130,15 @@ const Login = () => {
                 }
               />
             }
-            secureTextEntry
+            secureTextEntry={true}
+            rules={{
+              required: 'Password is required',
+              pattern: {
+                value: PASS_REGEX,
+                message:
+                  'Password must include number, lowercase, upercase, special character (@$%^&), min. 8 character, max. 32 character',
+              },
+            }}
           />
 
           <Text style={{alignSelf: 'flex-end'}}>Forgot Password ?</Text>
@@ -89,10 +148,9 @@ const Login = () => {
             labelStyle={{fontSize: 19}}
             contentStyle={{paddingVertical: 10}}
             style={{borderRadius: 15, marginTop: 20}}
-            onPress={() => {
-              navigation.navigate('BottomNavbar');
-            }}>
-            Log In
+            onPress={handleSubmit(onLogin)}
+            disabled={loading ? true : false}>
+            {loading ? 'Please Wait...' : 'Log In'}
           </Button>
           <Text style={{alignSelf: 'center', marginTop: 5}}>
             Don’t have an account?{' '}
