@@ -1,12 +1,15 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-import {Avatar} from 'react-native-paper';
+import React, {useContext} from 'react';
+import {Avatar, TouchableRipple} from 'react-native-paper';
 import * as IcOutlined from 'react-native-heroicons/outline';
 import {primaryColor, greyColor} from '../../values/colors';
+import {AuthContext} from '../../context/AuthContext';
 
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
 const Profile = () => {
+  const {logout} = useContext(AuthContext);
+
   return (
     <View
       style={{
@@ -115,6 +118,32 @@ const Profile = () => {
             </View>
             <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
           </View>
+
+          <TouchableRipple
+            rippleColor="rgba(0, 0, 0, .32)"
+            onPress={() => {
+              logout();
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  columnGap: 13,
+                }}>
+                <IcOutlined.ArrowRightOnRectangleIcon
+                  size={29}
+                  color={primaryColor}
+                />
+                <Text style={{fontSize: 17, fontWeight: 500}}>Logout</Text>
+              </View>
+            </View>
+          </TouchableRipple>
         </View>
       </View>
     </View>
