@@ -27,7 +27,7 @@ export const AuthProvider = ({children}) => {
         setUserToken(token);
 
         EncryptedStorage.setItem('user_info', JSON.stringify(userInfo));
-        EncryptedStorage.setItem('user_session', JSON.stringify({_t: token}));
+        EncryptedStorage.setItem('user_session', token);
       })
       .catch(error => {
         console.log(JSON.stringify(error?.response, null, 2));

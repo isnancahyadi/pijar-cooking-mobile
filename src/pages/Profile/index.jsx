@@ -1,14 +1,26 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Avatar, TouchableRipple} from 'react-native-paper';
 import * as IcOutlined from 'react-native-heroicons/outline';
 import {primaryColor, greyColor} from '../../values/colors';
 import {AuthContext} from '../../context/AuthContext';
+import axios from 'axios';
 
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
 const Profile = () => {
   const {logout} = useContext(AuthContext);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/user')
+      .then(result => {
+        console.log(JSON.stringify(result, null, 2));
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error?.response, null, 2));
+      });
+  }, []);
 
   return (
     <View
