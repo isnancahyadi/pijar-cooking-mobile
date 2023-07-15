@@ -8,10 +8,8 @@ import {primaryColor, greyColor, greyColor50} from '../../values/colors';
 import {PopularRecipe, NewRecipe} from '../../components';
 import {IcChicken, IcDessert, IcSeafood} from '../../assets/icon';
 import * as IcSolid from 'react-native-heroicons/solid';
-import {useNavigation} from '@react-navigation/native';
 
 const Home = () => {
-  // const navigation = useNavigation()
   const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = query => setSearchQuery(query);
 
@@ -144,10 +142,22 @@ const Home = () => {
 
         {/* New Recipe */}
         <View style={{marginTop: 30}}>
-          <View style={{alignContent: 'center', marginBottom: 15}}>
+          <View
+            style={{
+              paddingHorizontal: 30,
+              marginBottom: 15,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
+            <Text style={{fontSize: 21, fontWeight: '700'}}>New Recipe</Text>
             <Text
-              style={{fontSize: 21, fontWeight: '700', paddingHorizontal: 30}}>
-              New Recipe
+              style={{
+                fontSize: 16,
+                fontWeight: '500',
+                color: primaryColor,
+              }}>
+              View All
             </Text>
           </View>
           <NewRecipe />

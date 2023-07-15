@@ -11,6 +11,7 @@ import {
   persistReducer,
   persistStore,
 } from 'redux-persist';
+import {recipesApi} from './apislice/recipesApi';
 
 const storage = createSensitiveStorage({
   keychainService: '@J0K4M313354ICUI4CUj4m4h',
@@ -24,6 +25,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userSlice,
+  [recipesApi.reducerPath]: recipesApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -35,7 +37,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(recipesApi.middleware),
 });
 
 export const persistor = persistStore(store);

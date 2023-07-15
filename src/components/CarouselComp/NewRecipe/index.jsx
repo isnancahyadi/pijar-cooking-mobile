@@ -7,36 +7,38 @@ import {
   View,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
+// import {useGetNewRecipesQuery} from '../../store/apislice/recipesApi';
 import {Carousel} from 'react-native-snap-carousel';
 import {useNavigation} from '@react-navigation/native';
+import {useGetNewRecipesQuery} from '../../../store/apislice/recipesApi';
 
-const ENTRIES = [
-  {
-    title: 'Hotdog with Ketchup Mustard Lettuce',
-    description: 'Hotdog with creamy mustard sauce and sprinkled with lettuce',
-    image: require('../../../assets/img/hotdog-with-ketchup-mustard-lettuce.jpg'),
-  },
-  {
-    title: 'Salmon with Quinoa Raw Vegetables',
-    description: 'Fresh fish with fresh vegetables',
-    image: require('../../../assets/img/salmon-with-quinoa-raw-vegetables.jpg'),
-  },
-  {
-    title: 'Sinigang na Lechon Kawali',
-    description: 'Filipino food that has a lot of spices',
-    image: require('../../../assets/img/sinigang-na-lechon-kawali.jpg'),
-  },
-  {
-    title: 'Spicy Fried Tubtim Fish Salad Spicy',
-    description: 'Fish mixed with spicy salad',
-    image: require('../../../assets/img/spicy-fried-tubtim-fish-salad-spicy.jpg'),
-  },
-  {
-    title: 'Delicious Trout Meal',
-    description: 'Very tasty fish meal',
-    image: require('../../../assets/img/delicious-trout-meal.jpg'),
-  },
-];
+// const ENTRIES = [
+//   {
+//     title: 'Hotdog with Ketchup Mustard Lettuce',
+//     description: 'Hotdog with creamy mustard sauce and sprinkled with lettuce',
+//     image: require('../../../assets/img/hotdog-with-ketchup-mustard-lettuce.jpg'),
+//   },
+//   {
+//     title: 'Salmon with Quinoa Raw Vegetables',
+//     description: 'Fresh fish with fresh vegetables',
+//     image: require('../../../assets/img/salmon-with-quinoa-raw-vegetables.jpg'),
+//   },
+//   {
+//     title: 'Sinigang na Lechon Kawali',
+//     description: 'Filipino food that has a lot of spices',
+//     image: require('../../../assets/img/sinigang-na-lechon-kawali.jpg'),
+//   },
+//   {
+//     title: 'Spicy Fried Tubtim Fish Salad Spicy',
+//     description: 'Fish mixed with spicy salad',
+//     image: require('../../../assets/img/spicy-fried-tubtim-fish-salad-spicy.jpg'),
+//   },
+//   {
+//     title: 'Delicious Trout Meal',
+//     description: 'Very tasty fish meal',
+//     image: require('../../../assets/img/delicious-trout-meal.jpg'),
+//   },
+// ];
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -45,8 +47,10 @@ const NewRecipe = () => {
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
 
+  const {data: newRecipeData} = useGetNewRecipesQuery('5');
+
   useEffect(() => {
-    setEntries(ENTRIES);
+    setEntries(newRecipeData?.payload);
   }, []);
 
   const renderItem = ({item, index}) => {
@@ -56,12 +60,12 @@ const NewRecipe = () => {
           navigation.navigate('DetailRecipe');
         }}>
         <View style={styles.container} key={index}>
-          <Image source={item.image} style={styles.image} />
+          <Image source={{uri: item.image}} style={styles.image} />
           <Text style={styles.title} numberOfLines={1}>
             {item.title}
           </Text>
           <Text style={styles.description} numberOfLines={1}>
-            {item.description}
+            Ini deskripsi
           </Text>
         </View>
       </Pressable>
