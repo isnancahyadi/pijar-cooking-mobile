@@ -8,6 +8,9 @@ import App from './src/App';
 import {name as appName} from './app.json';
 import axios from 'axios';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import {Provider as StoreProvider} from 'react-redux';
+import {persistor, store} from './src/store';
+import {PersistGate} from 'redux-persist/integration/react';
 
 export default function Main() {
   axios.interceptors.request.use(async config => {
@@ -20,9 +23,13 @@ export default function Main() {
   });
 
   return (
-    <PaperProvider>
-      <App />
-    </PaperProvider>
+    <StoreProvider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <PaperProvider>
+          <App />
+        </PaperProvider>
+      </PersistGate>
+    </StoreProvider>
   );
 }
 

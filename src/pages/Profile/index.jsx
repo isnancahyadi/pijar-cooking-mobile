@@ -1,5 +1,6 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import React, {useContext, useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import {Avatar, TouchableRipple} from 'react-native-paper';
 import * as IcOutlined from 'react-native-heroicons/outline';
 import {primaryColor, greyColor} from '../../values/colors';
@@ -11,16 +12,7 @@ const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 const Profile = () => {
   const {logout} = useContext(AuthContext);
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:3000/user')
-      .then(result => {
-        console.log(JSON.stringify(result, null, 2));
-      })
-      .catch(error => {
-        console.log(JSON.stringify(error?.response, null, 2));
-      });
-  }, []);
+  const user = useSelector(state => state?.user?.data[0]);
 
   return (
     <View
@@ -35,12 +27,9 @@ const Profile = () => {
           justifyContent: 'center',
         }}>
         <View style={{alignItems: 'center', rowGap: 20}}>
-          <Avatar.Image
-            source={require('../../assets/img/profile.jpg')}
-            size={120}
-          />
+          <Avatar.Image source={{uri: user?.profile_picture}} size={120} />
           <Text style={{color: '#FFFFFF', fontSize: 23, fontWeight: 600}}>
-            John Doe
+            {user?.fullname}
           </Text>
         </View>
       </View>

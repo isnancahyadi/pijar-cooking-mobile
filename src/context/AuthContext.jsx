@@ -1,10 +1,13 @@
 import axios from 'axios';
 import React, {createContext, useEffect, useState} from 'react';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import {useDispatch} from 'react-redux';
+import {getUser, reset} from '../store/reducers/userSlice';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
@@ -28,6 +31,8 @@ export const AuthProvider = ({children}) => {
 
         EncryptedStorage.setItem('user_info', JSON.stringify(userInfo));
         EncryptedStorage.setItem('user_session', token);
+
+        dispatch(getUser());
       })
       .catch(error => {
         console.log(JSON.stringify(error?.response, null, 2));
@@ -41,6 +46,7 @@ export const AuthProvider = ({children}) => {
     setUserToken(null);
     EncryptedStorage.removeItem('user_info');
     EncryptedStorage.removeItem('user_session');
+    dispatch(reset());
     setIsLoading(false);
   };
 
