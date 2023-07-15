@@ -40,7 +40,7 @@ const ENTRIES = [
 
 const {width: screenWidth} = Dimensions.get('window');
 
-const RecommRecipe = () => {
+const NewRecipe = () => {
   const navigation = useNavigation();
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
@@ -82,7 +82,7 @@ const RecommRecipe = () => {
   );
 };
 
-export default RecommRecipe;
+export default NewRecipe;
 
 const styles = StyleSheet.create({
   container: {

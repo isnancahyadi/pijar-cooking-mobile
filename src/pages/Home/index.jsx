@@ -5,7 +5,7 @@ import {Searchbar, Surface} from 'react-native-paper';
 
 import * as IcOutlined from 'react-native-heroicons/outline';
 import {primaryColor, greyColor, greyColor50} from '../../values/colors';
-import {PopularRecipe, RecommRecipe} from '../../components';
+import {PopularRecipe, NewRecipe} from '../../components';
 import {IcChicken, IcDessert, IcSeafood} from '../../assets/icon';
 import * as IcSolid from 'react-native-heroicons/solid';
 import {useNavigation} from '@react-navigation/native';
@@ -61,14 +61,14 @@ const Home = () => {
                 fontWeight: '500',
                 color: primaryColor,
               }}>
-              More
+              View All
             </Text>
           </View>
           <PopularRecipe />
         </View>
         {/* ============== */}
 
-        {/* New Recipe */}
+        {/* Category */}
         <View style={{marginTop: 30, paddingHorizontal: 30}}>
           <View style={{alignContent: 'center', marginBottom: 15}}>
             <Text style={{fontSize: 21, fontWeight: '700'}}>Category</Text>
@@ -142,15 +142,15 @@ const Home = () => {
         </View>
         {/* ========== */}
 
-        {/* Recommended */}
+        {/* New Recipe */}
         <View style={{marginTop: 30}}>
           <View style={{alignContent: 'center', marginBottom: 15}}>
             <Text
               style={{fontSize: 21, fontWeight: '700', paddingHorizontal: 30}}>
-              Popular For you
+              New Recipe
             </Text>
           </View>
-          <RecommRecipe />
+          <NewRecipe />
         </View>
         {/* =========== */}
       </SafeAreaView>

@@ -1,4 +1,4 @@
 import PopularRecipe from './PopularRecipe';
-import RecommRecipe from './RecommRecipe';
+import NewRecipe from './NewRecipe';
 
-export {PopularRecipe, RecommRecipe};
+export {PopularRecipe, NewRecipe};

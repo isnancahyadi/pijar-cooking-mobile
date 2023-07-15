@@ -44,13 +44,15 @@ const Profile = () => {
           marginHorizontal: 20,
           borderTopStartRadius: 30,
           borderTopEndRadius: 30,
-          paddingHorizontal: 30,
+          // paddingHorizontal: 30,
           paddingTop: 30,
         }}>
-        <View style={{flexDirection: 'column', rowGap: 40}}>
+        <View style={{flexDirection: 'column'}}>
           <View
             style={{
               flexDirection: 'row',
+              paddingVertical: 10,
+              paddingHorizontal: 30,
               alignItems: 'center',
               justifyContent: 'space-between',
             }}>
@@ -69,6 +71,8 @@ const Profile = () => {
           <View
             style={{
               flexDirection: 'row',
+              paddingVertical: 10,
+              paddingHorizontal: 30,
               alignItems: 'center',
               justifyContent: 'space-between',
             }}>
@@ -87,6 +91,8 @@ const Profile = () => {
           <View
             style={{
               flexDirection: 'row',
+              paddingVertical: 10,
+              paddingHorizontal: 30,
               alignItems: 'center',
               justifyContent: 'space-between',
             }}>
@@ -105,6 +111,8 @@ const Profile = () => {
           <View
             style={{
               flexDirection: 'row',
+              paddingVertical: 10,
+              paddingHorizontal: 30,
               alignItems: 'center',
               justifyContent: 'space-between',
             }}>
@@ -121,7 +129,8 @@ const Profile = () => {
           </View>
 
           <TouchableRipple
-            rippleColor="rgba(0, 0, 0, .32)"
+            rippleColor="rgba(97, 157, 242, 0.1)"
+            style={{paddingVertical: 10, paddingHorizontal: 30}}
             onPress={() => {
               logout();
             }}>
