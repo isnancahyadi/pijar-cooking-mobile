@@ -101,6 +101,35 @@ const DetailRecipe = () => {
                   ? detailRecipe?.created_by
                   : 'Unknow'}
               </Text>
+              <Pressable onPress={() => navigation.navigate('Chat')}>
+                <Surface
+                  mode="flat"
+                  elevation={3}
+                  style={{
+                    height: 40,
+                    alignItems: 'flex-start',
+                    justifyContent: 'center',
+                    borderRadius: 15,
+                    paddingHorizontal: 15,
+                    backgroundColor: primaryColor,
+                  }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      columnGap: 10,
+                    }}>
+                    <IcOutlined.ChatBubbleOvalLeftEllipsisIcon
+                      color={'#FFFFFF'}
+                      size={30}
+                    />
+                    <Text
+                      style={{color: 'white', fontWeight: 500, fontSize: 17}}>
+                      Message
+                    </Text>
+                  </View>
+                </Surface>
+              </Pressable>
             </View>
             <View
               style={{
