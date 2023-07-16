@@ -10,6 +10,11 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Carousel} from 'react-native-snap-carousel';
 import {useNavigation} from '@react-navigation/native';
 import {useGetNewRecipesQuery} from '../../../store/apislice/recipesApi';
+import {useDispatch} from 'react-redux';
+import {
+  getSelectedRecipe,
+  storeRecipe,
+} from '../../../store/reducers/recipeSlice';
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -17,6 +22,7 @@ const NewRecipe = () => {
   const navigation = useNavigation();
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
+  const dispatch = useDispatch();
 
   const {data: newRecipeData} = useGetNewRecipesQuery('5');
 
@@ -28,6 +34,9 @@ const NewRecipe = () => {
     return (
       <Pressable
         onPress={() => {
+          dispatch(storeRecipe(item));
+          dispatch(getSelectedRecipe(item.id));
+
           navigation.navigate('DetailRecipe');
         }}>
         <View style={styles.container} key={index}>
