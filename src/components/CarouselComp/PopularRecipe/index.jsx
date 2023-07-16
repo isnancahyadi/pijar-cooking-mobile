@@ -2,29 +2,7 @@ import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
 import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
 import React, {useEffect, useRef, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-
-const ENTRIES = [
-  {
-    title: 'American Shrimp Fried Rice with Chili Fish Sauce',
-    image: require('../../../assets/img/american-shrimp-fried-rice-with-chili-fish-sauce.jpg'),
-  },
-  {
-    title: 'Chicken Curry Black Cup with Rice Noodles',
-    image: require('../../../assets/img/chicken-curry-black-cup-with-rice-noodles.jpg'),
-  },
-  {
-    title: 'Chicken Green Curry Bowl',
-    image: require('../../../assets/img/chicken-green-curry-bowl.jpg'),
-  },
-  {
-    title: 'Crispy Fried Chicken',
-    image: require('../../../assets/img/crispy-fried-chicken.jpg'),
-  },
-  {
-    title: 'Penne Pasta Tomato Sauce with Chicken Tomatoes',
-    image: require('../../../assets/img/penne-pasta-tomato-sauce-with-chicken-tomatoes.jpg'),
-  },
-];
+import {useGetAllRecipesQuery} from '../../../store/apislice/recipesApi';
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -33,8 +11,10 @@ const PopularRecipe = () => {
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
 
+  const {data: popularRecipeData} = useGetAllRecipesQuery('5');
+
   useEffect(() => {
-    setEntries(ENTRIES);
+    setEntries(popularRecipeData?.payload);
   }, []);
 
   const renderItem = ({item, index}, parallaxProps) => {
@@ -45,7 +25,7 @@ const PopularRecipe = () => {
         }}>
         <View style={styles.item}>
           <ParallaxImage
-            source={item.image}
+            source={{uri: item.image}}
             containerStyle={styles.imageContainer}
             style={styles.image}
             parallaxFactor={0.4}

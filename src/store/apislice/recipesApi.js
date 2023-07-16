@@ -11,7 +11,7 @@ export const recipesApi = createApi({
   },
   endpoints: builder => ({
     getAllRecipes: builder.query({
-      query: () => 'recipe',
+      query: limit => (limit ? `recipe?limit=${limit}` : 'recipe'),
     }),
     getNewRecipes: builder.query({
       query: limit => (limit ? `recipe/new?limit=${limit}` : 'recipe/new'),

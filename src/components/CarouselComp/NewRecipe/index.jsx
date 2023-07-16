@@ -7,38 +7,9 @@ import {
   View,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
-// import {useGetNewRecipesQuery} from '../../store/apislice/recipesApi';
 import {Carousel} from 'react-native-snap-carousel';
 import {useNavigation} from '@react-navigation/native';
 import {useGetNewRecipesQuery} from '../../../store/apislice/recipesApi';
-
-// const ENTRIES = [
-//   {
-//     title: 'Hotdog with Ketchup Mustard Lettuce',
-//     description: 'Hotdog with creamy mustard sauce and sprinkled with lettuce',
-//     image: require('../../../assets/img/hotdog-with-ketchup-mustard-lettuce.jpg'),
-//   },
-//   {
-//     title: 'Salmon with Quinoa Raw Vegetables',
-//     description: 'Fresh fish with fresh vegetables',
-//     image: require('../../../assets/img/salmon-with-quinoa-raw-vegetables.jpg'),
-//   },
-//   {
-//     title: 'Sinigang na Lechon Kawali',
-//     description: 'Filipino food that has a lot of spices',
-//     image: require('../../../assets/img/sinigang-na-lechon-kawali.jpg'),
-//   },
-//   {
-//     title: 'Spicy Fried Tubtim Fish Salad Spicy',
-//     description: 'Fish mixed with spicy salad',
-//     image: require('../../../assets/img/spicy-fried-tubtim-fish-salad-spicy.jpg'),
-//   },
-//   {
-//     title: 'Delicious Trout Meal',
-//     description: 'Very tasty fish meal',
-//     image: require('../../../assets/img/delicious-trout-meal.jpg'),
-//   },
-// ];
 
 const {width: screenWidth} = Dimensions.get('window');
 
