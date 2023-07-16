@@ -3,6 +3,11 @@ import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
 import React, {useEffect, useRef, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {useGetAllRecipesQuery} from '../../../store/apislice/recipesApi';
+import {useDispatch} from 'react-redux';
+import {
+  getSelectedRecipe,
+  storeRecipe,
+} from '../../../store/reducers/recipeSlice';
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -10,6 +15,7 @@ const PopularRecipe = () => {
   const navigation = useNavigation();
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
+  const dispatch = useDispatch();
 
   const {data: popularRecipeData} = useGetAllRecipesQuery('5');
 
@@ -21,18 +27,21 @@ const PopularRecipe = () => {
     return (
       <Pressable
         onPress={() => {
+          dispatch(storeRecipe(item));
+          dispatch(getSelectedRecipe(item.id));
+
           navigation.navigate('DetailRecipe');
         }}>
         <View style={styles.item}>
           <ParallaxImage
-            source={{uri: item.image}}
+            source={{uri: item?.image}}
             containerStyle={styles.imageContainer}
             style={styles.image}
             parallaxFactor={0.4}
             {...parallaxProps}
           />
           <Text style={styles.title} numberOfLines={3}>
-            {item.title}
+            {item?.title}
           </Text>
         </View>
       </Pressable>

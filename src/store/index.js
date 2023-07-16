@@ -1,6 +1,6 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import createSensitiveStorage from 'redux-persist-sensitive-storage';
-import {userSlice} from './reducers';
+import {recipeSlice, userSlice} from './reducers';
 import {
   FLUSH,
   PAUSE,
@@ -25,6 +25,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userSlice,
+  recipe: recipeSlice,
   [recipesApi.reducerPath]: recipesApi.reducer,
 });
 
