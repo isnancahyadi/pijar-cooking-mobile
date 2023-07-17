@@ -4,11 +4,6 @@ import {REHYDRATE} from 'redux-persist';
 export const recipesApi = createApi({
   reducerPath: 'recipesApi',
   baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3000/'}),
-  extractRehydrationInfo(action, {reducerPath}) {
-    if (action.type === REHYDRATE) {
-      return action.payload[reducerPath];
-    }
-  },
   endpoints: builder => ({
     getAllRecipes: builder.query({
       query: limit => (limit ? `recipe?limit=${limit}` : 'recipe'),

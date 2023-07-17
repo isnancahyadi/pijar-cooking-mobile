@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "316135786874",
+    "project_id": "pijarfoodapp",
+    "storage_bucket": "pijarfoodapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316135786874:android:a93970a5ead1eb21c4aec3",
+        "android_client_info": {
+          "package_name": "com.pijarfoodapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316135786874-n6dm4qkpm57ehahep4qmbbhkkkuv771m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkXuyQHS0abfnyHG7xfxJr1koIuZWPpEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316135786874-n6dm4qkpm57ehahep4qmbbhkkkuv771m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,6 +7,7 @@ import {Button, TextInput} from 'react-native-paper';
 import * as IcOutlined from 'react-native-heroicons/outline';
 import {greyColor, primaryColor} from '../../values/colors';
 import axios from 'axios';
+import firestore from '@react-native-firebase/firestore';
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -28,6 +29,20 @@ const RegAccount = ({onSubmit}) => {
         rePassword: data.rePassword,
       })
       .then(response => {
+        firestore()
+          .collection('accounts')
+          .doc(response?.data?.payload[0].username)
+          .set({
+            username: response?.data?.payload[0].username,
+            email: data.email,
+            password: data.password,
+          })
+          .then(res => {
+            console.log('account created');
+          })
+          .catch(error => {
+            console.log(error);
+          });
         onSubmit('regProfile', response?.data?.payload[0].username);
         setLoading(false);
       })

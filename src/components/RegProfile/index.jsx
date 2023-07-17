@@ -7,6 +7,7 @@ import {Button, TextInput} from 'react-native-paper';
 import * as IcOutlined from 'react-native-heroicons/outline';
 import {greyColor, primaryColor} from '../../values/colors';
 import axios from 'axios';
+import firestore from '@react-native-firebase/firestore';
 
 const RegProfile = ({user}) => {
   const navigation = useNavigation();
@@ -21,8 +22,25 @@ const RegProfile = ({user}) => {
         phoneNumber: data.phoneNumber,
         username: user,
       })
-      .then(() => {
-        navigation.navigate('BottomNavbar');
+      .then(response => {
+        firestore()
+          .collection('users')
+          .doc(response?.data?.payload[0].id.toString())
+          .set({
+            id: response?.data?.payload[0].id.toString(),
+            fullname: data.fullname,
+            phone_number: data.phoneNumber,
+            profile_picture: response?.data?.payload[0].profile_picture,
+            username: user,
+          })
+          .then(res => {
+            console.log('user created');
+          })
+          .catch(error => {
+            console.log(error);
+          });
+
+        navigation.navigate('Login');
         setLoading(false);
       })
       .catch(error => {
