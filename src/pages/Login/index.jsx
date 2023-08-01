@@ -54,7 +54,7 @@ const Login = () => {
             icon={
               <TextInput.Icon
                 icon={({color}) => (
-                  <IcOutlined.UserIcon size={27} color={color} />
+                  <IcOutlined.UserIcon size={28} color={color} />
                 )}
                 color={isTextInputFocused =>
                   isTextInputFocused ? primaryColor : greyColor
@@ -73,7 +73,7 @@ const Login = () => {
             icon={
               <TextInput.Icon
                 icon={({color}) => (
-                  <IcOutlined.LockClosedIcon size={27} color={color} />
+                  <IcOutlined.LockClosedIcon size={28} color={color} />
                 )}
                 color={isTextInputFocused =>
                   isTextInputFocused ? primaryColor : greyColor
