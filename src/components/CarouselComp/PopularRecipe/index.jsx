@@ -20,7 +20,7 @@ const PopularRecipe = () => {
   const {data: popularRecipeData} = useGetAllRecipesQuery('5');
 
   useEffect(() => {
-    setEntries(popularRecipeData?.payload);
+    setEntries(popularRecipeData?.payload?.metadata);
   }, []);
 
   const renderItem = ({item, index}, parallaxProps) => {

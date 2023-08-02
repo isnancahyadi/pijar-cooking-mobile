@@ -27,7 +27,7 @@ const NewRecipe = () => {
   const {data: newRecipeData} = useGetNewRecipesQuery('5');
 
   useEffect(() => {
-    setEntries(newRecipeData?.payload);
+    setEntries(newRecipeData?.payload?.metadata);
   }, []);
 
   const renderItem = ({item, index}) => {
