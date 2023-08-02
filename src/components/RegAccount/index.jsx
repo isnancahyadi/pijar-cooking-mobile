@@ -8,6 +8,7 @@ import * as IcOutlined from 'react-native-heroicons/outline';
 import {greyColor, primaryColor} from '../../values/colors';
 import axios from 'axios';
 import firestore from '@react-native-firebase/firestore';
+import config from '../../../config';
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -22,7 +23,7 @@ const RegAccount = ({onSubmit}) => {
   const submitAccount = async data => {
     setLoading(true);
     await axios
-      .post('http://localhost:3000/auth/register', {
+      .post(config.REACT_APP_REGISTER, {
         username: data.username,
         email: data.email,
         password: data.password,

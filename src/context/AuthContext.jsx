@@ -3,6 +3,7 @@ import React, {createContext, useEffect, useState} from 'react';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {useDispatch} from 'react-redux';
 import {getUser, reset} from '../store/reducers/userSlice';
+import config from '../../config';
 
 export const AuthContext = createContext();
 
@@ -15,7 +16,7 @@ export const AuthProvider = ({children}) => {
   const login = async data => {
     setIsLoading(true);
     await axios
-      .post('http://localhost:3000/auth/login', {
+      .post(config.REACT_APP_LOGIN, {
         username: data.user,
         password: data.password,
       })

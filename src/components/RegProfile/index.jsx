@@ -8,6 +8,7 @@ import * as IcOutlined from 'react-native-heroicons/outline';
 import {greyColor, primaryColor} from '../../values/colors';
 import axios from 'axios';
 import firestore from '@react-native-firebase/firestore';
+import config from '../../../config';
 
 const RegProfile = ({user}) => {
   const navigation = useNavigation();
@@ -17,7 +18,7 @@ const RegProfile = ({user}) => {
   const submitProfile = async data => {
     setLoading(true);
     await axios
-      .post('http://localhost:3000/user', {
+      .post(config.REACT_APP_USER, {
         fullname: data.fullname,
         phoneNumber: data.phoneNumber,
         username: user,

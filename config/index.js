@@ -1,3 +1,13 @@
-import {REACT_APP_TESTING} from '@env';
+import {
+  REACT_APP_LOGIN,
+  REACT_APP_REGISTER,
+  REACT_APP_USER,
+  REACT_APP_BASE_URL,
+} from '@env';
 
-export default {REACT_APP_TESTING};
+export default {
+  REACT_APP_LOGIN,
+  REACT_APP_REGISTER,
+  REACT_APP_USER,
+  REACT_APP_BASE_URL,
+};

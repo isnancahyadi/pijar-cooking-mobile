@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
+import config from '../../../config';
 
 const initialState = {
   data: null,
@@ -11,7 +12,7 @@ const initialState = {
 
 export const getUser = createAsyncThunk('user/getUser', async (_, thunkAPI) => {
   try {
-    const {data} = await axios.get('http://localhost:3000/user');
+    const {data} = await axios.get(config.REACT_APP_USER);
     return data?.payload;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
