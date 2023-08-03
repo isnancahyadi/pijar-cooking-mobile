@@ -6,5 +6,16 @@ import AddRecipe from './AddRecipe';
 import DetailRecipe from './DetailRecipe';
 import Message from './Message';
 import Chat from './Chat';
+import ListRecipe from './ListRecipe';
 
-export {Home, Login, Profile, Register, DetailRecipe, AddRecipe, Message, Chat};
+export {
+  Home,
+  Login,
+  Profile,
+  Register,
+  DetailRecipe,
+  AddRecipe,
+  Message,
+  Chat,
+  ListRecipe,
+};

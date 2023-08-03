@@ -14,9 +14,9 @@ const MenuIcon = ({route, focused, navigation}) => {
         size={29}
       />
     );
-  } else if (route.name === 'Add Recipe') {
+  } else if (route.name === 'Recipes') {
     icon = (
-      <IcOutlined.PlusCircleIcon
+      <IcOutlined.BookOpenIcon
         color={focused ? primaryColor : greyColor}
         size={29}
       />

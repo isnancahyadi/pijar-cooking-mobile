@@ -5,7 +5,7 @@ import {Searchbar, Surface} from 'react-native-paper';
 
 import * as IcOutlined from 'react-native-heroicons/outline';
 import {primaryColor, greyColor, greyColor50} from '../../values/colors';
-import {PopularRecipe, NewRecipe} from '../../components';
+import {PopularRecipe, NewRecipe, FABAddRecipe} from '../../components';
 import {IcChicken, IcDessert, IcSeafood} from '../../assets/icon';
 import * as IcSolid from 'react-native-heroicons/solid';
 
@@ -14,157 +14,169 @@ const Home = () => {
   const onChangeSearch = query => setSearchQuery(query);
 
   return (
-    <ScrollView>
-      <SafeAreaView
-        style={{
-          paddingVertical: 30,
-        }}>
-        {/* Search Bar */}
-        <View style={{paddingHorizontal: 30}}>
-          <Searchbar
-            placeholder="Search Pasta, Bread, etc"
-            placeholderTextColor={greyColor50}
-            icon={() => <IcOutlined.MagnifyingGlassIcon color={greyColor50} />}
-            clearIcon={
-              searchQuery
-                ? () => <IcOutlined.XCircleIcon color={greyColor50} size={26} />
-                : null
-            }
-            onChangeText={onChangeSearch}
-            value={searchQuery}
-            style={{
-              borderRadius: 15,
-              backgroundColor: '#EAEAEA',
-            }}
-          />
-        </View>
-        {/* ========== */}
-
-        {/* Popular Recipe */}
-        <View style={{marginTop: 20}}>
-          <View
-            style={{
-              paddingHorizontal: 30,
-              marginBottom: 15,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
-            <Text style={{fontSize: 21, fontWeight: '700'}}>
-              Popular Recipes
-            </Text>
-            <Text
+    <>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <SafeAreaView
+          style={{
+            paddingVertical: 30,
+          }}>
+          {/* Search Bar */}
+          <View style={{paddingHorizontal: 30}}>
+            <Searchbar
+              placeholder="Search Pasta, Bread, etc"
+              placeholderTextColor={greyColor50}
+              icon={() => (
+                <IcOutlined.MagnifyingGlassIcon color={greyColor50} />
+              )}
+              clearIcon={
+                searchQuery
+                  ? () => (
+                      <IcOutlined.XCircleIcon color={greyColor50} size={26} />
+                    )
+                  : null
+              }
+              elevation={2}
+              onChangeText={onChangeSearch}
+              value={searchQuery}
               style={{
-                fontSize: 16,
-                fontWeight: '500',
-                color: primaryColor,
-              }}>
-              View All
-            </Text>
+                borderRadius: 15,
+                backgroundColor: '#EAEAEA',
+              }}
+            />
           </View>
-          <PopularRecipe />
-        </View>
-        {/* ============== */}
+          {/* ========== */}
 
-        {/* Category */}
-        <View style={{marginTop: 30, paddingHorizontal: 30}}>
-          <View style={{alignContent: 'center', marginBottom: 15}}>
-            <Text style={{fontSize: 21, fontWeight: '700'}}>Category</Text>
-          </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <View style={{alignItems: 'center', rowGap: 5}}>
-              <Surface
-                mode="flat"
-                elevation={4}
-                style={{
-                  height: 70,
-                  width: 70,
-                  alignContent: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 20,
-                  backgroundColor: '#FE8761',
-                }}>
-                <IcChicken height={35} />
-              </Surface>
-              <Text style={{fontWeight: '700'}}>Chicken</Text>
-            </View>
-            <View style={{alignItems: 'center', rowGap: 5}}>
-              <Surface
-                mode="flat"
-                elevation={4}
-                style={{
-                  height: 70,
-                  width: 70,
-                  alignContent: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 20,
-                  backgroundColor: '#98D8AA',
-                }}>
-                <IcDessert height={35} />
-              </Surface>
-              <Text style={{fontWeight: '700'}}>Dessert</Text>
-            </View>
-            <View style={{alignItems: 'center', rowGap: 5}}>
-              <Surface
-                mode="flat"
-                elevation={4}
-                style={{
-                  height: 70,
-                  width: 70,
-                  alignContent: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 20,
-                  backgroundColor: '#F7D060',
-                }}>
-                <IcSeafood height={35} />
-              </Surface>
-              <Text style={{fontWeight: '700'}}>Seafood</Text>
-            </View>
-            <View style={{alignItems: 'center', rowGap: 5}}>
-              <Surface
-                mode="flat"
-                elevation={4}
-                style={{
-                  height: 70,
-                  width: 70,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 20,
-                  backgroundColor: '#EFD9D1',
-                }}>
-                <IcSolid.Squares2X2Icon color={greyColor} size={45} />
-              </Surface>
-              <Text style={{fontWeight: '700'}}>More</Text>
-            </View>
-          </View>
-        </View>
-        {/* ========== */}
-
-        {/* New Recipe */}
-        <View style={{marginTop: 30}}>
-          <View
-            style={{
-              paddingHorizontal: 30,
-              marginBottom: 15,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
-            <Text style={{fontSize: 21, fontWeight: '700'}}>New Recipe</Text>
-            <Text
+          {/* Popular Recipe */}
+          <View style={{marginTop: 20}}>
+            <View
               style={{
-                fontSize: 16,
-                fontWeight: '500',
-                color: primaryColor,
+                paddingHorizontal: 30,
+                marginBottom: 15,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
               }}>
-              View All
-            </Text>
+              <Text style={{fontSize: 21, fontWeight: '700'}}>
+                Popular Recipes
+              </Text>
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: '500',
+                  color: primaryColor,
+                }}>
+                View All
+              </Text>
+            </View>
+            <PopularRecipe />
           </View>
-          <NewRecipe />
-        </View>
-        {/* =========== */}
-      </SafeAreaView>
-    </ScrollView>
+          {/* ============== */}
+
+          {/* Category */}
+          <View style={{marginTop: 30, paddingHorizontal: 30}}>
+            <View style={{alignContent: 'center', marginBottom: 15}}>
+              <Text style={{fontSize: 21, fontWeight: '700'}}>Category</Text>
+            </View>
+            <View
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <View style={{alignItems: 'center', rowGap: 5}}>
+                <Surface
+                  mode="flat"
+                  elevation={4}
+                  style={{
+                    height: 70,
+                    width: 70,
+                    alignContent: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 20,
+                    backgroundColor: '#FE8761',
+                  }}>
+                  <IcChicken height={35} />
+                </Surface>
+                <Text style={{fontWeight: '700'}}>Chicken</Text>
+              </View>
+              <View style={{alignItems: 'center', rowGap: 5}}>
+                <Surface
+                  mode="flat"
+                  elevation={4}
+                  style={{
+                    height: 70,
+                    width: 70,
+                    alignContent: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 20,
+                    backgroundColor: '#98D8AA',
+                  }}>
+                  <IcDessert height={35} />
+                </Surface>
+                <Text style={{fontWeight: '700'}}>Dessert</Text>
+              </View>
+              <View style={{alignItems: 'center', rowGap: 5}}>
+                <Surface
+                  mode="flat"
+                  elevation={4}
+                  style={{
+                    height: 70,
+                    width: 70,
+                    alignContent: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 20,
+                    backgroundColor: '#F7D060',
+                  }}>
+                  <IcSeafood height={35} />
+                </Surface>
+                <Text style={{fontWeight: '700'}}>Seafood</Text>
+              </View>
+              <View style={{alignItems: 'center', rowGap: 5}}>
+                <Surface
+                  mode="flat"
+                  elevation={4}
+                  style={{
+                    height: 70,
+                    width: 70,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: 20,
+                    backgroundColor: '#EFD9D1',
+                  }}>
+                  <IcSolid.Squares2X2Icon color={greyColor} size={45} />
+                </Surface>
+                <Text style={{fontWeight: '700'}}>More</Text>
+              </View>
+            </View>
+          </View>
+          {/* ========== */}
+
+          {/* New Recipe */}
+          <View style={{marginTop: 30}}>
+            <View
+              style={{
+                paddingHorizontal: 30,
+                marginBottom: 15,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <Text style={{fontSize: 21, fontWeight: '700'}}>New Recipe</Text>
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: '500',
+                  color: primaryColor,
+                }}>
+                View All
+              </Text>
+            </View>
+            <NewRecipe />
+          </View>
+          {/* =========== */}
+        </SafeAreaView>
+      </ScrollView>
+
+      {/* Floating Action Button */}
+      <FABAddRecipe />
+      {/* ====================== */}
+    </>
   );
 };
 

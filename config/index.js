@@ -3,6 +3,7 @@ import {
   REACT_APP_REGISTER,
   REACT_APP_USER,
   REACT_APP_BASE_URL,
+  REACT_APP_RECIPE,
 } from '@env';
 
 export default {
@@ -10,4 +11,5 @@ export default {
   REACT_APP_REGISTER,
   REACT_APP_USER,
   REACT_APP_BASE_URL,
+  REACT_APP_RECIPE,
 };
