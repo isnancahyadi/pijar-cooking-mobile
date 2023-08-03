@@ -146,13 +146,18 @@ const DetailRecipe = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderRadius: 15,
-                    backgroundColor: primaryColor,
+                    // backgroundColor: primaryColor,
+                    backgroundColor: '#FFFFFF',
                   }}>
-                  <IcOutlined.PlayPauseIcon color={'#FFFFFF'} size={35} />
+                  <IcOutlined.PlayPauseIcon
+                    // color={'#FFFFFF'}
+                    color={primaryColor}
+                    size={35}
+                  />
                 </Surface>
               </Pressable>
-              <View style={{flexDirection: 'row', columnGap: 10}}>
-                <Surface
+              <View style={{flexDirection: 'row', columnGap: 10, width: 94}}>
+                {/* <Surface
                   mode="flat"
                   elevation={3}
                   style={{
@@ -177,7 +182,7 @@ const DetailRecipe = () => {
                     backgroundColor: '#FFFFFF',
                   }}>
                   <IcOutlined.HandThumbUpIcon color={primaryColor} size={32} />
-                </Surface>
+                </Surface> */}
               </View>
             </View>
           </View>
