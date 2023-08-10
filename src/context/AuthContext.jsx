@@ -15,6 +15,7 @@ export const AuthProvider = ({children}) => {
   const [isAlert, setIsAlert] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [errorStat, setErrorStat] = useState(null);
+  const [checkSession, setCheckSession] = useState(false);
 
   const hideAlert = () => {
     setIsAlert(false);
@@ -86,7 +87,7 @@ export const AuthProvider = ({children}) => {
 
   const isLoggedIn = async () => {
     try {
-      setIsLoading(true);
+      setCheckSession(true);
       let userInfo = await EncryptedStorage.getItem('user_info');
       const userToken = await EncryptedStorage.getItem('user_session');
       userInfo = JSON.parse(userInfo);
@@ -96,7 +97,7 @@ export const AuthProvider = ({children}) => {
         setUserInfo(userInfo);
       }
 
-      setIsLoading(false);
+      setCheckSession(false);
     } catch (error) {
       console.log(`isLogged in error ${error}`);
     }
@@ -118,6 +119,7 @@ export const AuthProvider = ({children}) => {
         hideAlert,
         errorMsg,
         errorStat,
+        checkSession,
       }}>
       {children}
     </AuthContext.Provider>

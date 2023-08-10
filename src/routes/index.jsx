@@ -4,9 +4,14 @@ import AuthStack from './AuthStack';
 import AppStack from './AppStack';
 import {AuthContext} from '../context/AuthContext';
 import {ActivityIndicator, View} from 'react-native';
+import {SplashScreen} from '../components';
 
 const Router = () => {
-  const {isLoading, userToken} = useContext(AuthContext);
+  const {checkSession, userToken} = useContext(AuthContext);
+
+  if (checkSession) {
+    return <SplashScreen />;
+  }
 
   // if (isLoading) {
   //   return (
