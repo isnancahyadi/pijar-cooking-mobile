@@ -20,7 +20,7 @@ Pijar Cooking is a web-based application using React JS technology and also has 
 
 Visit the link below for demo.
 
-:iphone: [Pijar Cooking Mobile ver](https://github.com/isnancahyadi/pijar-cooking-mobile/releases/tag/v1.0.0)
+:iphone: [Pijar Cooking Mobile ver](https://github.com/isnancahyadi/pijar-cooking-mobile/releases/tag/v1.0.1)
 
 ## Technologies Used
 
