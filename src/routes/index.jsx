@@ -8,13 +8,13 @@ import {ActivityIndicator, View} from 'react-native';
 const Router = () => {
   const {isLoading, userToken} = useContext(AuthContext);
 
-  if (isLoading) {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator size={'large'} />
-      </View>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+  //       <ActivityIndicator size={'large'} />
+  //     </View>
+  //   );
+  // }
 
   return (
     <NavigationContainer>

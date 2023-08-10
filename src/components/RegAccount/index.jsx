@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {Input} from '../../components';
 import {useForm} from 'react-hook-form';
@@ -9,16 +9,25 @@ import {greyColor, primaryColor} from '../../values/colors';
 import axios from 'axios';
 import firestore from '@react-native-firebase/firestore';
 import config from '../../../config';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 const PASS_REGEX = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@$%^&]).{8,32}/;
 
+const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
+
 const RegAccount = ({onSubmit}) => {
   const navigation = useNavigation();
   const {control, handleSubmit, watch} = useForm();
   const [loading, setLoading] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const hideAlert = () => {
+    setIsAlert(false);
+  };
 
   const submitAccount = async data => {
     setLoading(true);
@@ -42,14 +51,43 @@ const RegAccount = ({onSubmit}) => {
             console.log('account created');
           })
           .catch(error => {
-            console.log(error);
+            // console.log(error);
+            setIsAlert(true);
+
+            if (error) {
+              setErrorMsg("Can't connect to database");
+            } else {
+              setErrorMsg('Something wrong with our app');
+            }
+            setLoading(false);
           });
         onSubmit('regProfile', response?.data?.payload[0].username);
         setLoading(false);
       })
       .catch(error => {
-        console.log(JSON.stringify(error?.response, null, 2));
         setLoading(false);
+
+        const getRes = Object.keys(error?.response?.data?.message);
+
+        let msgProperty = [];
+
+        getRes.map((item, key) => {
+          const {
+            [item]: {message},
+          } = error?.response?.data?.message;
+
+          msgProperty[key] = message;
+        });
+
+        setIsAlert(true);
+
+        if (error?.response?.status === 409) {
+          setErrorMsg(msgProperty.toString().split('.,').join(', '));
+        } else if (error?.status === undefined) {
+          setErrorMsg("Can't connect to database");
+        } else {
+          setErrorMsg('Something wrong with our app');
+        }
       });
   };
 
@@ -159,6 +197,26 @@ const RegAccount = ({onSubmit}) => {
           Log in Here
         </Text>
       </Text>
+
+      <AwesomeAlert
+        show={isAlert}
+        showProgress={false}
+        title="Register Failed"
+        message={errorMsg}
+        closeOnTouchOutside={false}
+        closeOnHardwareBackPress={false}
+        showConfirmButton={true}
+        confirmText="Oke"
+        confirmButtonColor={primaryColor}
+        titleStyle={{fontWeight: 700, fontSize: 29}}
+        messageStyle={{fontSize: 18, marginTop: screenHeight * 0.02}}
+        confirmButtonTextStyle={{fontSize: 16}}
+        confirmButtonStyle={{paddingHorizontal: screenWidth * 0.1}}
+        contentContainerStyle={{width: screenWidth}}
+        onConfirmPressed={() => {
+          hideAlert();
+        }}
+      />
     </View>
   );
 };
