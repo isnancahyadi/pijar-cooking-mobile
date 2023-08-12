@@ -28,7 +28,7 @@ export const AuthProvider = ({children}) => {
         username: data.user,
         password: data.password,
       })
-      .then(response => {
+      .then(async response => {
         const userInfo = {
           _u: response?.data?.payload?.username,
           _e: response?.data?.payload?.email,
@@ -38,8 +38,8 @@ export const AuthProvider = ({children}) => {
         setUserInfo(userInfo);
         setUserToken(token);
 
-        EncryptedStorage.setItem('user_info', JSON.stringify(userInfo));
-        EncryptedStorage.setItem('user_session', token);
+        await EncryptedStorage.setItem('user_info', JSON.stringify(userInfo));
+        await EncryptedStorage.setItem('user_session', token);
 
         dispatch(getUser());
         setIsLoading(false);
@@ -76,11 +76,11 @@ export const AuthProvider = ({children}) => {
       });
   };
 
-  const logout = () => {
+  const logout = async () => {
     setIsLoading(true);
     setUserToken(null);
-    EncryptedStorage.removeItem('user_info');
-    EncryptedStorage.removeItem('user_session');
+    await EncryptedStorage.removeItem('user_info');
+    await EncryptedStorage.removeItem('user_session');
     dispatch(reset());
     setIsLoading(false);
   };

@@ -12,6 +12,9 @@ const Input = ({
   icon,
   rules = {},
   secureTextEntry,
+  multiline,
+  numberOfLines = 1,
+  onPressIn = null,
   keyboardType = 'default',
 }) => {
   return (
@@ -32,7 +35,10 @@ const Input = ({
             selectionColor={primaryColorSelection}
             cursorColor={primaryColor}
             outlineStyle={{borderRadius: 15}}
+            multiline={multiline}
+            numberOfLines={numberOfLines}
             left={icon}
+            onPressIn={onPressIn}
             style={{
               fontSize: 17,
               paddingVertical: 5,

@@ -45,7 +45,6 @@ const Login = () => {
         username: user,
       })
       .then(response => {
-        console.log(response?.data?.payload);
         firestore()
           .collection('users')
           .doc(response?.data?.payload[0].id.toString())
