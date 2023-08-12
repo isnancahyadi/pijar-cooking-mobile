@@ -24,11 +24,17 @@ const NewRecipe = () => {
   const carouselRef = useRef(null);
   const dispatch = useDispatch();
 
-  const {data: newRecipeData} = useGetNewRecipesQuery('5');
+  const {
+    data: newRecipeData,
+    isLoading,
+    isFetching,
+  } = useGetNewRecipesQuery('5');
 
   useEffect(() => {
-    setEntries(newRecipeData?.payload?.metadata);
-  }, []);
+    if (!isFetching) {
+      setEntries(newRecipeData?.payload?.metadata);
+    }
+  }, [isFetching, entries]);
 
   const renderItem = ({item, index}) => {
     return (

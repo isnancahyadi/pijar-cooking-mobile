@@ -17,11 +17,17 @@ const PopularRecipe = () => {
   const carouselRef = useRef(null);
   const dispatch = useDispatch();
 
-  const {data: popularRecipeData} = useGetAllRecipesQuery('5');
+  const {
+    data: popularRecipeData,
+    isLoading,
+    isFetching,
+  } = useGetAllRecipesQuery('5');
 
   useEffect(() => {
-    setEntries(popularRecipeData?.payload?.metadata);
-  }, []);
+    if (!isFetching) {
+      setEntries(popularRecipeData?.payload?.metadata);
+    }
+  }, [isFetching, entries]);
 
   const renderItem = ({item, index}, parallaxProps) => {
     return (
