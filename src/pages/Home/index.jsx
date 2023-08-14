@@ -1,17 +1,48 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {Searchbar, Surface} from 'react-native-paper';
+import {ActivityIndicator, Modal, Searchbar, Surface} from 'react-native-paper';
 
 import * as IcOutlined from 'react-native-heroicons/outline';
 import {primaryColor, greyColor, greyColor50} from '../../values/colors';
-import {PopularRecipe, NewRecipe, FABAddRecipe} from '../../components';
-import {IcChicken, IcDessert, IcSeafood} from '../../assets/icon';
+import {
+  PopularRecipe,
+  NewRecipe,
+  FABAddRecipe,
+  CardCategory,
+} from '../../components';
 import * as IcSolid from 'react-native-heroicons/solid';
+import axios from 'axios';
+import config from '../../../config';
 
 const Home = () => {
-  const [searchQuery, setSearchQuery] = useState('');
   const onChangeSearch = query => setSearchQuery(query);
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [category, setCategory] = useState([]);
+  const [showCategory, setShowCategory] = useState(false);
+  const [isFetchCat, setIsFetchCat] = useState(false);
+
+  const getCategory = async () => {
+    setIsFetchCat(true);
+    await axios
+      .get(config.REACT_APP_CATEGORY)
+      .then(({data}) => {
+        setCategory(data?.payload);
+        setIsFetchCat(false);
+      })
+      .catch(error => {
+        console.log('error');
+        setIsFetchCat(false);
+      });
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  const visibleCatList = () => setShowCategory(true);
+  const hideCatList = () => setShowCategory(false);
 
   return (
     <>
@@ -40,7 +71,7 @@ const Home = () => {
               value={searchQuery}
               style={{
                 borderRadius: 15,
-                backgroundColor: '#EAEAEA',
+                backgroundColor: 'white',
               }}
             />
           </View>
@@ -77,73 +108,51 @@ const Home = () => {
             <View style={{alignContent: 'center', marginBottom: 15}}>
               <Text style={{fontSize: 21, fontWeight: '700'}}>Category</Text>
             </View>
-            <View
-              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <View style={{alignItems: 'center', rowGap: 5}}>
-                <Surface
-                  mode="flat"
-                  elevation={4}
-                  style={{
-                    height: 70,
-                    width: 70,
-                    alignContent: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 20,
-                    backgroundColor: '#FE8761',
-                  }}>
-                  <IcChicken height={35} />
-                </Surface>
-                <Text style={{fontWeight: '700'}}>Chicken</Text>
+
+            {isFetchCat ? (
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginVertical: 23,
+                }}>
+                <ActivityIndicator
+                  animating={isFetchCat}
+                  size={'large'}
+                  color={primaryColor}
+                />
               </View>
-              <View style={{alignItems: 'center', rowGap: 5}}>
-                <Surface
-                  mode="flat"
-                  elevation={4}
-                  style={{
-                    height: 70,
-                    width: 70,
-                    alignContent: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 20,
-                    backgroundColor: '#98D8AA',
-                  }}>
-                  <IcDessert height={35} />
-                </Surface>
-                <Text style={{fontWeight: '700'}}>Dessert</Text>
+            ) : (
+              <View
+                style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                {[...new Array(3)].map((item, key) => (
+                  <CardCategory
+                    key={key}
+                    item={category[key]}
+                    hideCatList={hideCatList}
+                  />
+                ))}
+
+                <Pressable onPress={visibleCatList}>
+                  <View style={{alignItems: 'center', rowGap: 5}}>
+                    <Surface
+                      mode="flat"
+                      elevation={4}
+                      style={{
+                        height: 70,
+                        width: 70,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 20,
+                        backgroundColor: '#EFD9D1',
+                      }}>
+                      <IcSolid.Squares2X2Icon color={greyColor} size={45} />
+                    </Surface>
+                    <Text style={{fontWeight: '700'}}>More</Text>
+                  </View>
+                </Pressable>
               </View>
-              <View style={{alignItems: 'center', rowGap: 5}}>
-                <Surface
-                  mode="flat"
-                  elevation={4}
-                  style={{
-                    height: 70,
-                    width: 70,
-                    alignContent: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 20,
-                    backgroundColor: '#F7D060',
-                  }}>
-                  <IcSeafood height={35} />
-                </Surface>
-                <Text style={{fontWeight: '700'}}>Seafood</Text>
-              </View>
-              <View style={{alignItems: 'center', rowGap: 5}}>
-                <Surface
-                  mode="flat"
-                  elevation={4}
-                  style={{
-                    height: 70,
-                    width: 70,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 20,
-                    backgroundColor: '#EFD9D1',
-                  }}>
-                  <IcSolid.Squares2X2Icon color={greyColor} size={45} />
-                </Surface>
-                <Text style={{fontWeight: '700'}}>More</Text>
-              </View>
-            </View>
+            )}
           </View>
           {/* ========== */}
 
@@ -176,6 +185,31 @@ const Home = () => {
       {/* Floating Action Button */}
       <FABAddRecipe />
       {/* ====================== */}
+
+      {/* <Portal> */}
+      <Modal
+        visible={showCategory}
+        onDismiss={hideCatList}
+        contentContainerStyle={{
+          backgroundColor: 'white',
+          padding: 20,
+          marginHorizontal: 20,
+        }}>
+        <View
+          style={{
+            gap: 10,
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignContent: 'center',
+            alignItems: 'center',
+          }}>
+          {category.map((item, key) => (
+            <CardCategory key={key} item={item} hideCatList={hideCatList} />
+          ))}
+        </View>
+      </Modal>
+      {/* </Portal> */}
     </>
   );
 };

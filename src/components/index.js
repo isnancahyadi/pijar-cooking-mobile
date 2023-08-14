@@ -6,6 +6,7 @@ import RegProfile from './RegProfile';
 import FABAddRecipe from './FABAddRecipe';
 import CardRecipe from './CardRecipe';
 import SplashScreen from './SplashScreen';
+import CardCategory from './CardCategory';
 
 export {
   BottomNavbar,
@@ -17,4 +18,5 @@ export {
   FABAddRecipe,
   CardRecipe,
   SplashScreen,
+  CardCategory,
 };
