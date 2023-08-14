@@ -54,6 +54,7 @@ const Message = () => {
                 paddingHorizontal: 20,
                 paddingVertical: 13,
                 backgroundColor: 'white',
+                marginVertical: 5,
               }}>
               <View
                 style={{
