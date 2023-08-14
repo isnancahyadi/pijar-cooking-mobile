@@ -48,7 +48,7 @@ const Profile = () => {
           paddingTop: 30,
         }}>
         <View style={{flexDirection: 'column'}}>
-          <View
+          {/* <View
             style={{
               flexDirection: 'row',
               paddingVertical: 10,
@@ -126,7 +126,7 @@ const Profile = () => {
               <Text style={{fontSize: 17, fontWeight: 500}}>Liked Recipe</Text>
             </View>
             <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
-          </View>
+          </View> */}
 
           <TouchableRipple
             rippleColor="rgba(97, 157, 242, 0.1)"

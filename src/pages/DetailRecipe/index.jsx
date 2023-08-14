@@ -101,7 +101,7 @@ const DetailRecipe = () => {
                   ? detailRecipe?.created_by
                   : 'Unknow'}
               </Text>
-              <Pressable onPress={() => navigation.navigate('Chat')}>
+              {/* <Pressable onPress={() => navigation.navigate('Chat')}>
                 <Surface
                   mode="flat"
                   elevation={3}
@@ -129,7 +129,7 @@ const DetailRecipe = () => {
                     </Text>
                   </View>
                 </Surface>
-              </Pressable>
+              </Pressable> */}
             </View>
             <View
               style={{
