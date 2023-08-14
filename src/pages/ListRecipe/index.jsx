@@ -27,6 +27,7 @@ const ListRecipe = () => {
   const [dataStatus, setDataStatus] = useState(false);
 
   const [dataRecipe, setDataRecipe] = useState([]);
+  const [keyword, setKeyword] = useState('');
 
   const [offset, setOffset] = useState(1);
 
@@ -36,14 +37,10 @@ const ListRecipe = () => {
 
   const [dataRecipeByCat, setDataRecipeByCat] = useState([]);
 
-  useEffect(() => {
-    setOffset(1);
-  }, []);
-
   const getDataRecipe = async () => {
     setLoading(true);
     await axios
-      .get(`${config.REACT_APP_RECIPE}?page=${offset}`)
+      .get(`${config.REACT_APP_RECIPE}?page=${offset}&search=${keyword}`)
       .then(({data}) => {
         setOffset(offset + 1);
         setDataRecipe([...dataRecipe, ...data?.payload?.metadata]);
@@ -58,9 +55,18 @@ const ListRecipe = () => {
       });
   };
 
+  const onChangeSearch = query => setSearchQuery(query);
+
+  const handleSearch = search => {
+    setOffset(1);
+    setDataRecipe([]);
+    setDataRecipeByCat([]);
+    setKeyword(search);
+  };
+
   useEffect(() => {
     getDataRecipe();
-  }, []);
+  }, [keyword]);
 
   const getCategory = async () => {
     await axios
@@ -79,7 +85,10 @@ const ListRecipe = () => {
 
   useEffect(() => {
     let param = route?.params;
-    if (param) {
+    if (param?.search) {
+      setSearchQuery(param?.search?.keyword);
+      handleSearch(param?.search?.keyword);
+    } else if (param) {
       if (param?.categorySlug === '') {
         setOffset(1);
       } else {
@@ -120,8 +129,6 @@ const ListRecipe = () => {
     getDataRecipeByCat();
   }, [selectedCategory]);
 
-  const onChangeSearch = query => setSearchQuery(query);
-
   const visibleCatList = () => setShowCategory(true);
   const hideCatList = () => setShowCategory(false);
 
@@ -159,6 +166,9 @@ const ListRecipe = () => {
               elevation={2}
               onChangeText={onChangeSearch}
               value={searchQuery}
+              onSubmitEditing={event => {
+                handleSearch(event.nativeEvent.text);
+              }}
               style={{
                 flex: 1,
                 borderRadius: 15,

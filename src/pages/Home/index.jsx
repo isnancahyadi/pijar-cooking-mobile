@@ -14,9 +14,10 @@ import {
 import * as IcSolid from 'react-native-heroicons/solid';
 import axios from 'axios';
 import config from '../../../config';
+import {useNavigation} from '@react-navigation/native';
 
 const Home = () => {
-  const onChangeSearch = query => setSearchQuery(query);
+  const navigation = useNavigation();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [category, setCategory] = useState([]);
@@ -40,6 +41,19 @@ const Home = () => {
   useEffect(() => {
     getCategory();
   }, []);
+
+  const onChangeSearch = query => setSearchQuery(query);
+
+  const handleSearch = search => {
+    navigation.navigate('Recipes', {
+      search: {
+        keyword: search,
+        dataRecipe: [],
+        dataRecipeByCat: [],
+        offset: 1,
+      },
+    });
+  };
 
   const visibleCatList = () => setShowCategory(true);
   const hideCatList = () => setShowCategory(false);
@@ -69,6 +83,9 @@ const Home = () => {
               elevation={2}
               onChangeText={onChangeSearch}
               value={searchQuery}
+              onSubmitEditing={event => {
+                handleSearch(event.nativeEvent.text);
+              }}
               style={{
                 borderRadius: 15,
                 backgroundColor: 'white',
