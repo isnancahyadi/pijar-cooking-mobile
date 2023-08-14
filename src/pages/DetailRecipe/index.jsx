@@ -101,7 +101,7 @@ const DetailRecipe = () => {
                   ? detailRecipe?.created_by
                   : 'Unknow'}
               </Text>
-              {/* <Pressable onPress={() => navigation.navigate('Chat')}>
+              <Pressable onPress={() => navigation.navigate('ComingSoon')}>
                 <Surface
                   mode="flat"
                   elevation={3}
@@ -129,7 +129,7 @@ const DetailRecipe = () => {
                     </Text>
                   </View>
                 </Surface>
-              </Pressable> */}
+              </Pressable>
             </View>
             <View
               style={{
@@ -142,47 +142,55 @@ const DetailRecipe = () => {
                   mode="flat"
                   elevation={3}
                   style={{
+                    width: 100,
                     height: 47,
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderRadius: 15,
-                    // backgroundColor: primaryColor,
-                    backgroundColor: '#FFFFFF',
+                    backgroundColor: primaryColor,
+                    // backgroundColor: '#FFFFFF',
                   }}>
                   <IcOutlined.PlayPauseIcon
-                    // color={'#FFFFFF'}
-                    color={primaryColor}
+                    color={'#FFFFFF'}
+                    // color={primaryColor}
                     size={35}
                   />
                 </Surface>
               </Pressable>
               <View style={{flexDirection: 'row', columnGap: 10, width: 94}}>
-                {/* <Surface
-                  mode="flat"
-                  elevation={3}
-                  style={{
-                    height: 47,
-                    width: 47,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 15,
-                    backgroundColor: '#FFFFFF',
-                  }}>
-                  <IcOutlined.BookmarkIcon color={primaryColor} size={32} />
-                </Surface>
-                <Surface
-                  mode="flat"
-                  elevation={3}
-                  style={{
-                    height: 47,
-                    width: 47,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 15,
-                    backgroundColor: '#FFFFFF',
-                  }}>
-                  <IcOutlined.HandThumbUpIcon color={primaryColor} size={32} />
-                </Surface> */}
+                <Pressable onPress={() => navigation.navigate('ComingSoon')}>
+                  <Surface
+                    mode="flat"
+                    elevation={3}
+                    style={{
+                      height: 47,
+                      width: 47,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 15,
+                      backgroundColor: '#FFFFFF',
+                    }}>
+                    <IcOutlined.BookmarkIcon color={primaryColor} size={32} />
+                  </Surface>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate('ComingSoon')}>
+                  <Surface
+                    mode="flat"
+                    elevation={3}
+                    style={{
+                      height: 47,
+                      width: 47,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 15,
+                      backgroundColor: '#FFFFFF',
+                    }}>
+                    <IcOutlined.HandThumbUpIcon
+                      color={primaryColor}
+                      size={32}
+                    />
+                  </Surface>
+                </Pressable>
               </View>
             </View>
           </View>

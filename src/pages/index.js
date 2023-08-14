@@ -7,6 +7,7 @@ import DetailRecipe from './DetailRecipe';
 import Message from './Message';
 import Chat from './Chat';
 import ListRecipe from './ListRecipe';
+import ComingSoon from './ComingSoon';
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   Message,
   Chat,
   ListRecipe,
+  ComingSoon,
 };

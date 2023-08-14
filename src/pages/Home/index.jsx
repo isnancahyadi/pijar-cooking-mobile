@@ -107,14 +107,16 @@ const Home = () => {
               <Text style={{fontSize: 21, fontWeight: '700'}}>
                 Popular Recipes
               </Text>
-              <Text
-                style={{
-                  fontSize: 16,
-                  fontWeight: '500',
-                  color: primaryColor,
-                }}>
-                View All
-              </Text>
+              <Pressable onPress={() => navigation.navigate('ComingSoon')}>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: '500',
+                    color: primaryColor,
+                  }}>
+                  View All
+                </Text>
+              </Pressable>
             </View>
             <PopularRecipe />
           </View>
@@ -184,14 +186,16 @@ const Home = () => {
                 alignItems: 'center',
               }}>
               <Text style={{fontSize: 21, fontWeight: '700'}}>New Recipe</Text>
-              <Text
-                style={{
-                  fontSize: 16,
-                  fontWeight: '500',
-                  color: primaryColor,
-                }}>
-                View All
-              </Text>
+              <Pressable onPress={() => navigation.navigate('ComingSoon')}>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontWeight: '500',
+                    color: primaryColor,
+                  }}>
+                  View All
+                </Text>
+              </Pressable>
             </View>
             <NewRecipe />
           </View>

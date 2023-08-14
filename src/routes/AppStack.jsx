@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {AddRecipe, Chat, DetailRecipe} from '../pages';
+import {AddRecipe, Chat, ComingSoon, DetailRecipe} from '../pages';
 import {BottomNavbar} from '../components';
 
 const Stack = createNativeStackNavigator();
@@ -15,6 +15,7 @@ const AppStack = () => {
       <Stack.Screen name="BottomNavbar" component={BottomNavbar} />
       <Stack.Screen name="DetailRecipe" component={DetailRecipe} />
       <Stack.Screen name="AddRecipe" component={AddRecipe} />
+      <Stack.Screen name="ComingSoon" component={ComingSoon} />
       <Stack.Screen
         name="Chat"
         component={Chat}

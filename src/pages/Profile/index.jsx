@@ -6,10 +6,14 @@ import * as IcOutlined from 'react-native-heroicons/outline';
 import {primaryColor, greyColor} from '../../values/colors';
 import {AuthContext} from '../../context/AuthContext';
 import axios from 'axios';
+import ComingSoon from '../ComingSoon';
+import {useNavigation} from '@react-navigation/native';
 
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 
 const Profile = () => {
+  const navigation = useNavigation();
+
   const {logout} = useContext(AuthContext);
 
   const user = useSelector(state => state?.user?.data[0]);
@@ -48,86 +52,117 @@ const Profile = () => {
           paddingTop: 30,
         }}>
         <View style={{flexDirection: 'column'}}>
-          {/* <View
-            style={{
-              flexDirection: 'row',
-              paddingVertical: 10,
-              paddingHorizontal: 30,
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
+          {/* ===== EDIT PROFILE ===== */}
+          <TouchableRipple
+            rippleColor="rgba(97, 157, 242, 0.1)"
+            onPress={() => navigation.navigate('ComingSoon')}>
             <View
               style={{
                 flexDirection: 'row',
+                paddingVertical: 10,
+                paddingHorizontal: 30,
                 alignItems: 'center',
-                columnGap: 13,
+                justifyContent: 'space-between',
               }}>
-              <IcOutlined.UserIcon size={29} color={primaryColor} />
-              <Text style={{fontSize: 17, fontWeight: 500}}>Edit Profile</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  columnGap: 13,
+                }}>
+                <IcOutlined.UserIcon size={29} color={primaryColor} />
+                <Text style={{fontSize: 17, fontWeight: 500}}>
+                  Edit Profile
+                </Text>
+              </View>
+              <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
             </View>
-            <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
-          </View>
+          </TouchableRipple>
+          {/* ======================== */}
 
-          <View
-            style={{
-              flexDirection: 'row',
-              paddingVertical: 10,
-              paddingHorizontal: 30,
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
+          {/* ===== MY RECIPE ===== */}
+          <TouchableRipple
+            rippleColor="rgba(97, 157, 242, 0.1)"
+            onPress={() => navigation.navigate('ComingSoon')}>
             <View
               style={{
                 flexDirection: 'row',
+                paddingVertical: 10,
+                paddingHorizontal: 30,
                 alignItems: 'center',
-                columnGap: 13,
+                justifyContent: 'space-between',
               }}>
-              <IcOutlined.BookOpenIcon size={29} color={primaryColor} />
-              <Text style={{fontSize: 17, fontWeight: 500}}>My Recipe</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  columnGap: 13,
+                }}>
+                <IcOutlined.BookOpenIcon size={29} color={primaryColor} />
+                <Text style={{fontSize: 17, fontWeight: 500}}>My Recipe</Text>
+              </View>
+              <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
             </View>
-            <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
-          </View>
+          </TouchableRipple>
+          {/* ===================== */}
 
-          <View
-            style={{
-              flexDirection: 'row',
-              paddingVertical: 10,
-              paddingHorizontal: 30,
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
+          {/* ===== SAVED RECIPE ===== */}
+          <TouchableRipple
+            rippleColor="rgba(97, 157, 242, 0.1)"
+            onPress={() => navigation.navigate('ComingSoon')}>
             <View
               style={{
                 flexDirection: 'row',
+                paddingVertical: 10,
+                paddingHorizontal: 30,
                 alignItems: 'center',
-                columnGap: 13,
+                justifyContent: 'space-between',
               }}>
-              <IcOutlined.BookmarkIcon size={29} color={primaryColor} />
-              <Text style={{fontSize: 17, fontWeight: 500}}>Saved Recipe</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  columnGap: 13,
+                }}>
+                <IcOutlined.BookmarkIcon size={29} color={primaryColor} />
+                <Text style={{fontSize: 17, fontWeight: 500}}>
+                  Saved Recipe
+                </Text>
+              </View>
+              <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
             </View>
-            <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
-          </View>
+          </TouchableRipple>
+          {/* ======================== */}
 
-          <View
-            style={{
-              flexDirection: 'row',
-              paddingVertical: 10,
-              paddingHorizontal: 30,
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
+          {/* ===== LIKED RECIPE ===== */}
+          <TouchableRipple
+            rippleColor="rgba(97, 157, 242, 0.1)"
+            onPress={() => navigation.navigate('ComingSoon')}>
             <View
               style={{
                 flexDirection: 'row',
+                paddingVertical: 10,
+                paddingHorizontal: 30,
                 alignItems: 'center',
-                columnGap: 13,
+                justifyContent: 'space-between',
               }}>
-              <IcOutlined.HandThumbUpIcon size={29} color={primaryColor} />
-              <Text style={{fontSize: 17, fontWeight: 500}}>Liked Recipe</Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  columnGap: 13,
+                }}>
+                <IcOutlined.HandThumbUpIcon size={29} color={primaryColor} />
+                <Text style={{fontSize: 17, fontWeight: 500}}>
+                  Liked Recipe
+                </Text>
+              </View>
+              <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
             </View>
-            <IcOutlined.ChevronRightIcon size={29} color={greyColor} />
-          </View> */}
+          </TouchableRipple>
+          {/* ======================== */}
 
+          {/* ===== LOGOUT ===== */}
           <TouchableRipple
             rippleColor="rgba(97, 157, 242, 0.1)"
             style={{paddingVertical: 10, paddingHorizontal: 30}}
@@ -154,6 +189,7 @@ const Profile = () => {
               </View>
             </View>
           </TouchableRipple>
+          {/* ================== */}
         </View>
       </View>
     </View>
